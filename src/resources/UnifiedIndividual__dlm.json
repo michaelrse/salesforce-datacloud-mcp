@@ -1,0 +1,393 @@
+{
+  "category": "PROFILE",
+  "creationType": "Derived",
+  "dataSpaceName": "default",
+  "fields": [
+    {
+      "creationType": "Custom",
+      "isDistinct": true,
+      "isMapped": true,
+      "label": "ABC Brand",
+      "name": "ABC_Brand__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "ABC ID",
+      "name": "ABC_ID__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Birth Date",
+      "name": "ssot__BirthDate__c",
+      "type": "DateTime",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "CSAT Score",
+      "name": "CSAT_Score__c",
+      "type": "Number",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Churn Score",
+      "name": "Churn_Score__c",
+      "type": "Number",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Closed Cases",
+      "name": "Closed_Cases__c",
+      "type": "Number",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": true,
+      "isMapped": true,
+      "label": "Contact Role",
+      "name": "Contact_Role__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Created Date",
+      "name": "ssot__CreatedDate__c",
+      "type": "DateTime",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Demo User",
+      "name": "Demo_User__c",
+      "type": "Boolean",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Employee Count",
+      "name": "Employee_Count__c",
+      "type": "Number",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Engagement Score",
+      "name": "Engagement_Score__c",
+      "type": "Number",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "External Record Id",
+      "name": "ssot__ExternalRecordId__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "External Source Id",
+      "name": "ssot__ExternalSourceId__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "First Name",
+      "name": "ssot__FirstName__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": true,
+      "isMapped": true,
+      "label": "Gender",
+      "name": "ssot__GenderId__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Gender Identity",
+      "name": "ssot__GenderIdentity__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "System",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Internal Organization",
+      "name": "ssot__InternalOrganizationId__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": true,
+      "isMapped": true,
+      "label": "Is Anonymous",
+      "name": "ssot__IsAnonymous__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": true,
+      "isMapped": true,
+      "label": "Job Title",
+      "name": "Job_Title__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "LTV",
+      "name": "LTV__c",
+      "type": "Number",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Last Engagement in Days",
+      "name": "Last_Engagement_in_Days__c",
+      "type": "Number",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Last Modified Date",
+      "name": "ssot__LastModifiedDate__c",
+      "type": "DateTime",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Last Name",
+      "name": "ssot__LastName__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Lead Score",
+      "name": "Lead_Score__c",
+      "type": "Number",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": true,
+      "isMapped": true,
+      "label": "Lead Source",
+      "name": "Lead_Source__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Loyalty Member",
+      "name": "Loyalty_Member__c",
+      "type": "Boolean",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": true,
+      "isMapped": true,
+      "label": "Loyalty Status",
+      "name": "Loyalty_Status__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Mobile App",
+      "name": "Mobile_App__c",
+      "type": "Boolean",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Newsletter",
+      "name": "Newsletter__c",
+      "type": "Boolean",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Number of Orders",
+      "name": "Number_of_Orders__c",
+      "type": "Number",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Open Cases",
+      "name": "Open_Cases__c",
+      "type": "Number",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Party",
+      "name": "ssot__PartyId__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Person Name",
+      "name": "ssot__PersonName__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Photo URL",
+      "name": "ssot__PhotoURL__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": true,
+      "isMapped": true,
+      "label": "Preferred Channel",
+      "name": "Preferred_Channel__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Primary Account",
+      "name": "ssot__PrimaryAccountId__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": true,
+      "isMapped": true,
+      "label": "Primary Language",
+      "name": "ssot__PrimaryLanguageId__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Pronoun",
+      "name": "ssot__Pronoun__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Custom",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Purchase Score",
+      "name": "Purchase_Score__c",
+      "type": "Number",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Salutation",
+      "name": "ssot__Salutation__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": false,
+      "isMapped": true,
+      "label": "Title",
+      "name": "ssot__TitleName__c",
+      "type": "Text",
+      "usageTag": "None"
+    },
+    {
+      "creationType": "Standard",
+      "isDistinct": false,
+      "isMapped": true,
+      "isPrimaryKey": true,
+      "label": "Unified Individual Id",
+      "name": "ssot__Id__c",
+      "type": "Text",
+      "usageTag": "None"
+    }
+  ],
+  "hasExternalDataLakeObjectMappings": false,
+  "id": "0gjWz00000029QbIAI",
+  "isEditable": true,
+  "isEnabled": true,
+  "isSegmentable": true,
+  "label": "Unified Individual",
+  "name": "UnifiedIndividual__dlm"
+}

@@ -94,14 +94,10 @@ function createMcpServer() {
 }
 
 async function main() {
-  console.error('Authenticating with Salesforce...');
-  await sfClient.authenticate();
-  console.error('Authentication complete.');
-
   const app = express();
   app.use(express.json());
 
-  // Health check for Cloud Run
+  // Health check for Cloud Run — must respond before auth completes
   app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 
   // Stateless MCP endpoint — each request gets its own transport
@@ -117,9 +113,15 @@ async function main() {
   app.listen(port, () => {
     console.error(`Salesforce Data Cloud MCP Server listening on port ${port}`);
   });
+
+  // Authenticate after the server is already listening so Cloud Run health
+  // checks can succeed even if Salesforce auth is slow or misconfigured.
+  console.error('Authenticating with Salesforce...');
+  await sfClient.authenticate();
+  console.error('Authentication complete.');
 }
 
 main().catch((error) => {
-  console.error('Server error:', error);
+  console.error('Server startup error:', error);
   process.exit(1);
 });

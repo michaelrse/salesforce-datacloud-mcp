@@ -105,8 +105,13 @@ export class QueryApiService {
 
   async queryDataGraphByLookupKeys(dataGraphName, lookupKeys) {
     try {
-      const lookupKeysJson = JSON.stringify(lookupKeys);
-      const endpoint = `/api/${this.apiVersion}/dataGraph/${dataGraphName}?lookupKeys=${encodeURIComponent(lookupKeysJson)}`;
+      const groups = Array.isArray(lookupKeys) && Array.isArray(lookupKeys[0])
+        ? lookupKeys
+        : [Array.isArray(lookupKeys) ? lookupKeys : [lookupKeys]];
+      const rendered = groups
+        .map(group => '[' + group.map(k => `${k.key}=${k.value}`).join(', ') + ']')
+        .join(', ');
+      const endpoint = `/api/${this.apiVersion}/dataGraph/${dataGraphName}?lookupKeys=${encodeURIComponent(rendered)}`;
       return await this.client.makeDataCloudRequest('GET', endpoint);
     } catch (error) {
       console.error(`Failed to query data graph ${dataGraphName} with lookup keys:`, error);

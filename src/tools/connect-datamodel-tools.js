@@ -56,20 +56,21 @@ const getDataModelObjectMappings = {
       - Check the specific field-to-field mappings (e.g., "Contact_DLO.Email" -> "Individual_DMO.Email__c").
 
       Common patterns:
-      - To find all mappings *to* a specific DMO: \`{"dmoName": "ssot__Individual__dlm"}\`
-      - To find all mappings *from* a specific DLO: \`{"dloName": "Salesforce_Contact_DLO__dlm"}\`
-      
-      Returns: An object with a 'mappings' array, where each entry shows 'dloName', 'dmoName', 'dmoAttributeName', 'dloAttributeName', and other mapping details.
+      - To find all mappings *to* a specific DMO: \`{"dmoDeveloperName": "ssot__Individual__dlm"}\`
+      - To find all mappings *from* a specific CRM source object: \`{"sourceObjectName": "Account"}\`
+      - Add a DLO filter: \`{"dmoDeveloperName": "ssot__Account__dlm", "dloDeveloperName": "Account_home__dll"}\`
 
-      Common errors:
-      - 400: Invalid 'dmoName' or 'dloName' provided.
+      NOTE: At least one of 'dmoDeveloperName' or 'sourceObjectName' MUST be provided — the endpoint does not support unfiltered listing.
+
+      Returns: An object with a 'mappings' array, where each entry shows 'dloName', 'dmoName', 'dmoAttributeName', 'dloAttributeName', and other mapping details.
     `,
     inputSchema: {
       type: 'object',
       properties: {
         dataspace: { type: 'string', description: 'Optional. The dataspace to query. Defaults to "default".' },
-        dloName: { type: 'string', description: 'Optional. Filter by a specific Data Lake Object (DLO) API name.' },
-        dmoName: { type: 'string', description: 'Optional. Filter by a specific Data Model Object (DMO) API name.' },
+        dmoDeveloperName: { type: 'string', description: 'Filter by target Data Model Object developer name (e.g., ssot__Individual__dlm). Required unless sourceObjectName is provided.' },
+        sourceObjectName: { type: 'string', description: 'Filter by CRM source object name (e.g., Account). Required unless dmoDeveloperName is provided. Note: NOT suffixed with DeveloperName.' },
+        dloDeveloperName: { type: 'string', description: 'Optional. Additional Data Lake Object developer name filter (e.g., Account_home__dll).' },
         limit: { type: 'number', description: 'Optional. Number of results per page.' },
         offset: { type: 'number', description: 'Optional. Offset for pagination.' },
       },

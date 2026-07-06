@@ -5,7 +5,7 @@
  */
 export class ProfileApiService {
   /**
-   * @param {import('../salesforce-client2.js').SalesforceClient} client
+   * @param {import('../salesforce-client.js').SalesforceClient} client
    */
   constructor(client) {
     this.client = client;
@@ -29,14 +29,14 @@ export class ProfileApiService {
   async getCustomerConsent(customerId) {
     try {
       const query = `
-        SELECT 
-          IndividualId__c,
-          Email,
-          HasOptedOutOfEmail,
-          ConsentStatus__c,
-          LastModifiedDate
-        FROM UnifiedIndividual__dlm
-        WHERE IndividualId__c = '${customerId}'
+        SELECT
+          cpe.ssot__PartyId__c AS IndividualId__c,
+          cpe.ssot__EmailAddress__c AS Email,
+          cpe.ssot__HasOptedOutOfEmail__c AS HasOptedOutOfEmail,
+          cpe.ssot__EmailBounceReasonText__c AS ConsentStatus__c,
+          cpe.ssot__LastModifiedDate__c AS LastModifiedDate
+        FROM ssot__ContactPointEmail__dlm cpe
+        WHERE cpe.ssot__PartyId__c = '${customerId}'
       `;
       const result = await this.client.queryDataCloud(query);
       return result.data?.[0] || null;
@@ -131,9 +131,10 @@ export class ProfileApiService {
 
   async queryProfileParentChildBySearchKey(dmoParentApiName, searchKey, searchKeyValue, dmoChildApiName, fields = null, limit = null) {
     try {
-      let endpoint = `/api/${this.apiVersion}/profile/${dmoParentApiName}/${searchKeyValue}/${dmoChildApiName}`;
+      let endpoint = `/api/${this.apiVersion}/profile/${dmoParentApiName}/${dmoChildApiName}`;
       const params = new URLSearchParams();
       params.append('searchKey', searchKey);
+      params.append('searchKeyValue', searchKeyValue);
       if (fields) params.append('fields', fields);
       if (limit) params.append('limit', limit.toString());
       endpoint += `?${params.toString()}`;

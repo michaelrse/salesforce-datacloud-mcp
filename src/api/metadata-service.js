@@ -22,7 +22,7 @@ export class MetadataApiService {
     const cacheKey = 'metadata:schema';
     const fetcher = async () => {
       const endpoint = `/api/${this.dataCloudApiVersion}/metadata?entityType=DataModelObject`;
-      console.log(`[API CALL] Fetching Data Cloud schema from ${endpoint}`);
+      console.error(`[API CALL] Fetching Data Cloud schema from ${endpoint}`);
       return this.client.makeDataCloudRequest('GET', endpoint);
     };
     return this.getMetadata(cacheKey, fetcher, forceRefresh);
@@ -34,7 +34,7 @@ export class MetadataApiService {
     const cacheKey = `metadata:entity:${entityName}`;
     const fetcher = async () => {
       const endpoint = `/api/${this.dataCloudApiVersion}/metadata?entityName=${encodeURIComponent(entityName)}`;
-      console.log(`[API CALL] Fetching metadata for entity ${entityName} from ${endpoint}`);
+      console.error(`[API CALL] Fetching metadata for entity ${entityName} from ${endpoint}`);
       return this.client.makeDataCloudRequest('GET', endpoint);
     };
     return this.getMetadata(cacheKey, fetcher, forceRefresh);
@@ -46,7 +46,7 @@ export class MetadataApiService {
     const cacheKey = `metadata:category:${category}`;
     const fetcher = async () => {
       const endpoint = `/api/${this.dataCloudApiVersion}/metadata?entityCategory=${encodeURIComponent(category)}`;
-      console.log(`[API CALL] Fetching metadata for category ${category} from ${endpoint}`);
+      console.error(`[API CALL] Fetching metadata for category ${category} from ${endpoint}`);
       return this.client.makeDataCloudRequest('GET', endpoint);
     };
     return this.getMetadata(cacheKey, fetcher, forceRefresh);
@@ -73,7 +73,7 @@ export class MetadataApiService {
   // Backwards-compatible helper: fetch everything (kept for callers that used it before)
   async _fetchFreshMetadata() {
     const endpoint = `/api/${this.dataCloudApiVersion}/metadata`;
-    console.log(`[API CALL] Fetching fresh metadata from endpoint: ${endpoint}`);
+    console.error(`[API CALL] Fetching fresh metadata from endpoint: ${endpoint}`);
     return this.client.makeDataCloudRequest('GET', endpoint);
   }
 }

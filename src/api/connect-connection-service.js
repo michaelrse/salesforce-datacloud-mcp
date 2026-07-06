@@ -142,7 +142,7 @@ export class ConnectConnectionService {
    * @param {string} resourceName
    */
   async getConnectionPreview(connectionId, resourceName) {
-    console.log(`[API CALL] Fetching LIVE preview for: ${connectionId}/${resourceName}`);
+    console.error(`[API CALL] Fetching LIVE preview for: ${connectionId}/${resourceName}`);
     const endpoint = `${this.baseConnectionEndpoint}/${connectionId}/${resourceName}/preview`;
     return this.client.makeDataCloudRequest('GET', endpoint);
   }
@@ -155,7 +155,7 @@ export class ConnectConnectionService {
    * @param {object} schemaBody
    */
   async putConnectionSchema(connectionId, schemaBody) {
-    console.log(`[API CALL] Updating schema for: ${connectionId}`);
+    console.error(`[API CALL] Updating schema for: ${connectionId}`);
     const endpoint = `${this.baseConnectionEndpoint}/${connectionId}/schema`;
     
     // 1. Make the API call
@@ -174,7 +174,7 @@ export class ConnectConnectionService {
    * @param {object} sitemapBody
    */
   async putConnectionSiteMap(connectionId, sitemapBody) {
-    console.log(`[API CALL] Updating sitemap for: ${connectionId}`);
+    console.error(`[API CALL] Updating sitemap for: ${connectionId}`);
     const endpoint = `${this.baseConnectionEndpoint}/${connectionId}/sitemap`;
 
     // 1. Make the API call
@@ -193,37 +193,37 @@ export class ConnectConnectionService {
   async _fetchGetConnectionCollection(params = {}) {
     const queryParams = new URLSearchParams(params);
     const endpoint = `${this.baseConnectionEndpoint}?${queryParams.toString()}`;
-    console.log(`[API CALL] Fetching connection collection`);
+    console.error(`[API CALL] Fetching connection collection`);
     return this.client.makeDataCloudRequest('GET', endpoint);
   }
 
   async _fetchGetConnection(connectionId) {
     const endpoint = `${this.baseConnectionEndpoint}/${connectionId}`;
-    console.log(`[API CALL] Fetching connection details for: ${connectionId}`);
+    console.error(`[API CALL] Fetching connection details for: ${connectionId}`);
     return this.client.makeDataCloudRequest('GET', endpoint);
   }
 
   async _fetchPostConnectionFieldCollection(connectionId, resourceName, body) {
     const endpoint = `${this.baseConnectionEndpoint}/${connectionId}/${resourceName}/fields`;
-    console.log(`[API CALL] Fetching connection fields for: ${connectionId}/${resourceName}`);
+    console.error(`[API CALL] Fetching connection fields for: ${connectionId}/${resourceName}`);
     return this.client.makeDataCloudRequest('POST', endpoint, body);
   }
 
   async _fetchGetConnectionEndpoints(connectionId) {
     const endpoint = `${this.baseConnectionEndpoint}/${connectionId}/endpoints`;
-    console.log(`[API CALL] Fetching connection endpoints for: ${connectionId}`);
+    console.error(`[API CALL] Fetching connection endpoints for: ${connectionId}`);
     return this.client.makeDataCloudRequest('GET', endpoint);
   }
 
   async _fetchGetConnectionSchema(connectionId) {
     const endpoint = `${this.baseConnectionEndpoint}/${connectionId}/schema`;
-    console.log(`[API CALL] Fetching connection schema for: ${connectionId}`);
+    console.error(`[API CALL] Fetching connection schema for: ${connectionId}`);
     return this.client.makeDataCloudRequest('GET', endpoint);
   }
 
   async _fetchGetConnectionSiteMap(connectionId) {
     const endpoint = `${this.baseConnectionEndpoint}/${connectionId}/sitemap`;
-    console.log(`[API CALL] Fetching connection sitemap for: ${connectionId}`);
+    console.error(`[API CALL] Fetching connection sitemap for: ${connectionId}`);
     return this.client.makeDataCloudRequest('GET', endpoint);
   }
 }

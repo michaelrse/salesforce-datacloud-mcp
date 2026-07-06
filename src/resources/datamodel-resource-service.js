@@ -22,7 +22,7 @@ export class DataModelResourceService {
     if (this.cache.has(uri)) {
       const expiry = this.cacheExpiry.get(uri);
       if (now < expiry) {
-        console.log(`✅ Cache HIT for resource: ${uri}`);
+        console.error(`✅ Cache HIT for resource: ${uri}`);
         return this.cache.get(uri);
       }
     }
@@ -34,7 +34,7 @@ export class DataModelResourceService {
     }
     
     // Fetch fresh data
-    console.log(`🔄 Cache MISS for resource: ${uri}, fetching...`);
+    console.error(`🔄 Cache MISS for resource: ${uri}, fetching...`);
     const result = await resource.handler(this.client);
     
     // Cache it

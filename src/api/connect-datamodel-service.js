@@ -105,7 +105,7 @@ export class ConnectDataModelService {
     if (params.orderby) queryParams.append('orderby', params.orderby);
     
     const endpoint = `${this.baseDmoEndpoint}?${queryParams.toString()}`;
-    console.log(`[API CALL] Fetching DMO list for: ${params.dataspace || 'default'}`);
+    console.error(`[API CALL] Fetching DMO list for: ${params.dataspace || 'default'}`);
     return this.client.makeConnectApiRequest('GET', endpoint);
   }
 
@@ -114,7 +114,7 @@ export class ConnectDataModelService {
    */
   async _fetchDataModelObjectByName(dmoNameOrId) {
     const endpoint = `${this.baseDmoEndpoint}/${dmoNameOrId}`;
-    console.log(`[API CALL] Fetching DMO schema for: ${dmoNameOrId}`);
+    console.error(`[API CALL] Fetching DMO schema for: ${dmoNameOrId}`);
     return this.client.makeConnectApiRequest('GET', endpoint);
   }
 
@@ -122,15 +122,22 @@ export class ConnectDataModelService {
    * [PRIVATE] Fetches a list of DMO/DLO mappings from the API.
    */
   async _fetchDataModelObjectMappings(params = {}) {
+    const dmoDeveloperName = params.dmoDeveloperName || params.dmoName;
+    const sourceObjectName = params.sourceObjectName;
+    const dloDeveloperName = params.dloDeveloperName || params.dloName;
+    if (!dmoDeveloperName && !sourceObjectName) {
+      throw new Error('At least one of dmoDeveloperName or sourceObjectName is required.');
+    }
     const queryParams = new URLSearchParams();
     if (params.dataspace) queryParams.append('dataspace', params.dataspace);
-    if (params.dloName) queryParams.append('dloName', params.dloName);
-    if (params.dmoName) queryParams.append('dmoName', params.dmoName);
+    if (dmoDeveloperName) queryParams.append('dmoDeveloperName', dmoDeveloperName);
+    if (sourceObjectName) queryParams.append('sourceObjectName', sourceObjectName);
+    if (dloDeveloperName) queryParams.append('dloDeveloperName', dloDeveloperName);
     if (params.limit) queryParams.append('limit', params.limit);
     if (params.offset) queryParams.append('offset', params.offset);
 
     const endpoint = `${this.baseMappingEndpoint}?${queryParams.toString()}`;
-    console.log(`[API CALL] Fetching DMO mappings`);
+    console.error(`[API CALL] Fetching DMO mappings`);
     return this.client.makeConnectApiRequest('GET', endpoint);
   }
 }

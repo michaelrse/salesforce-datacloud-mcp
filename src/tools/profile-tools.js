@@ -165,7 +165,7 @@ const getProfileDmoMetadata = {
 const queryProfileDmo = {
   definition: {
     name: 'query_profile_dmo',
-    description: 'Query profile DMO records with optional field selection, limit, and filters.',
+    description: 'Query profile DMO records with a filter. The Profile REST endpoint requires a filter clause — use execute_data_cloud_query for unfiltered/list-all use cases.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -183,15 +183,15 @@ const queryProfileDmo = {
         },
         filters: {
           type: 'string',
-          description: 'Filter criteria in format [field=value] (e.g., [ssot__DataSourceId__c=POS])',
+          description: 'REQUIRED. Filter criteria in format [field=value] (e.g., [ssot__DataSourceId__c=POS]). The Data Cloud Profile REST API rejects requests without a filter.',
         },
       },
-      required: ['dmoApiName'],
+      required: ['dmoApiName', 'filters'],
     },
   },
   handler: async (args, sfClient) => {
-    if (!args || typeof args !== 'object' || !('dmoApiName' in args)) {
-      throw new Error('dmoApiName is required');
+    if (!args || typeof args !== 'object' || !('dmoApiName' in args) || !('filters' in args)) {
+      throw new Error('dmoApiName and filters are required');
     }
     const dmoApiName = String(args.dmoApiName);
     const fields = args.fields ? String(args.fields) : null;
@@ -425,7 +425,7 @@ const queryProfileParentChildBySearchKey = {
   },
   handler: async (args, sfClient) => {
     if (!args || typeof args !== 'object' ||
-        !('dDmoParentApiName' in args) || !('searchKey' in args) || // Typo dDmoParentApiName fixed to dmoParentApiName
+        !('dmoParentApiName' in args) || !('searchKey' in args) ||
         !('searchKeyValue' in args) || !('dmoChildApiName' in args)) {
       throw new Error('dmoParentApiName, searchKey, searchKeyValue, and dmoChildApiName are required');
     }

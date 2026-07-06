@@ -41,7 +41,7 @@ export class SalesforceClient {
     this.dataModelResources = new DataModelResourceService(this);
   }
 
-  async makeDataCloudRequest(method, endpoint, body = null) {
+  async makeDataCloudRequest(method, endpoint, body = null, isRetry = false) {
     if (!this.dataCloudAccessToken) {
       throw new Error('Not authenticated with Data Cloud. Please call authenticate() first.');
     }
@@ -55,16 +55,21 @@ export class SalesforceClient {
     };
     if (body) options.body = JSON.stringify(body);
     const response = await fetch(url, options);
+    if (response.status === 401 && !isRetry) {
+      console.error('Data Cloud token expired — re-authenticating...');
+      await this.authenticate();
+      return this.makeDataCloudRequest(method, endpoint, body, true);
+    }
     if (!response.ok) {
       const errorText = await response.text();
-      console.error(`Data Cloud API Error Response: ${errorText}`);
+      console.error(`Data Cloud API Error Response [${response.status}]: ${errorText || '(empty body)'}`);
       throw new Error(`Data Cloud API request failed with status ${response.status}`);
     }
     if (response.status === 204) return null;
     return response.json();
   }
 
-  async makeConnectApiRequest(method, endpoint, body = null) {
+  async makeConnectApiRequest(method, endpoint, body = null, isRetry = false) {
     if (!this.conn.accessToken || !this.conn.instanceUrl) {
       throw new Error('Not authenticated with core Salesforce. Please call authenticate() first.');
     }
@@ -78,6 +83,11 @@ export class SalesforceClient {
     };
     if (body) options.body = JSON.stringify(body);
     const response = await fetch(url, options);
+    if (response.status === 401 && !isRetry) {
+      console.error('Core Salesforce token expired — re-authenticating...');
+      await this.authenticate();
+      return this.makeConnectApiRequest(method, endpoint, body, true);
+    }
     if (!response.ok) {
       const errorText = await response.text();
       console.error(`Connect API Error Response: ${errorText}`);

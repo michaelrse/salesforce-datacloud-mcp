@@ -343,7 +343,7 @@ const queryDataGraphByLookupKeys = {
         },
         lookupKeys: {
           type: 'string',
-          description: 'JSON string of lookup key-value pairs, e.g., [{"key": "email", "value": "test@example.com"}]',
+          description: 'JSON string of lookup key-value pairs. Keys MUST be fully-qualified as "DMO__dlm.field__c" (bare field names are rejected). Example: [{"key":"UnifiedLinkssotIndividualIr1__dlm.SourceRecordId__c","value":"10000001"}]. Multiple keys for the same DMO are AND-ed. For multi-DMO group lookups, pass an array of arrays.',
         },
       },
       required: ['dataGraphName', 'lookupKeys'],

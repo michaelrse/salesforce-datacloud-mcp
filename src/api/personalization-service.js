@@ -17,8 +17,12 @@ export class PersonalizationApiService {
   async getDecisions(requestBody) {
     try {
       const endpoint = '/personalization/decisions';
-      // This is a POST request and the entire body is passed through.
-      return await this.client.makeDataCloudRequest('POST', endpoint, requestBody);
+      const body = { ...requestBody };
+      if (body.context && body.context.unifiedIndividualId && !body.context.individualId) {
+        body.context = { ...body.context, individualId: body.context.unifiedIndividualId };
+        delete body.context.unifiedIndividualId;
+      }
+      return await this.client.makeDataCloudRequest('POST', endpoint, body);
     } catch (error) {
       console.error('Failed to get personalization decisions:', error);
       throw error;
